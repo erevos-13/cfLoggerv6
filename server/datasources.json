@@ -1,0 +1,6 @@
+{
+  "db": {
+    "url":  "mongodb://cfLogger:erevos13@ds145555.mlab.com:45555/cflogger",
+    "connector": "loopback-connector-mongodb"
+  }
+}
