@@ -1,0 +1,50 @@
+{
+  "name": "Resources",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "itemId": {
+      "type": "string",
+      "required": true
+    },
+    "resourcesTypesIds": {
+      "type": [
+        "object"
+      ],
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {
+    "wodResources": {
+      "accepts": [
+        {
+          "arg": "itemId",
+          "type": "string",
+          "required": true,
+          "description": "The itemId of teh wod"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "resources",
+          "type": "array",
+          "root": false,
+          "description": ""
+        }
+      ],
+      "description": "This methods will give me the resources",
+      "http": [
+        {
+          "path": "/wod/resources",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}

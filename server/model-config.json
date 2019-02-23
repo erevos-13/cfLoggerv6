@@ -22,7 +22,6 @@
         "permission": "ALLOW"
       }
     ]
-
   },
   "AccessToken": {
     "dataSource": "db",
@@ -42,5 +41,13 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "wod": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Resources": {
+    "dataSource": "db",
+    "public": true
   }
 }

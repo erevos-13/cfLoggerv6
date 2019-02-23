@@ -2,6 +2,7 @@
   "db": {
     "url": "mongodb://cfLogger:erevos13@ds145555.mlab.com:45555/cflogger",
     "name": "db",
-    "connector": "loopback-connector-mongodb"
+    "connector": "loopback-connector-mongodb",
+    "options" : { "useNewUrlParser": true }
   }
 }

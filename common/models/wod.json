@@ -1,0 +1,32 @@
+{
+  "name": "wod",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "specs": {
+      "type": "object",
+      "required": true
+    },
+    "capTime": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "Resource": {
+      "type": "hasMany",
+      "model": "Resources",
+      "foreignKey": "itemId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

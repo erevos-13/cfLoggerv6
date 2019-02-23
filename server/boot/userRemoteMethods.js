@@ -3,8 +3,28 @@ module.exports = function (app) {
 
   User.balances = function (msg, cb) {
     console.log(msg);
+
+
     cb(null, 'Greetings... ' - msg);
   };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   User.remoteMethod(
     'balances', {
