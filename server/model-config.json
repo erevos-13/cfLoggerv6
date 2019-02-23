@@ -18,7 +18,7 @@
     "acls": [
       {
         "principalType": "ROLE",
-        "principalId": "$everyone",
+        "principalId": "$authenticated",
         "permission": "ALLOW"
       }
     ]
@@ -47,6 +47,14 @@
     "public": true
   },
   "Resources": {
+    "dataSource": "db",
+    "public": true
+  },
+  "leaderboard": {
+    "dataSource": "db",
+    "public": true
+  },
+  "gamesEvents": {
     "dataSource": "db",
     "public": true
   }

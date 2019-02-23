@@ -8,7 +8,7 @@ module.exports = function(Resources) {
    * @param {Function(Error, array)} callback
    */
 
-  Resources.wodResources = function(itemId, callback) {
+  Resources.resourcesByItemId = function(itemId, callback) {
     let resources;
     // TODO i need to get the from resources the id
     console.log(itemId);

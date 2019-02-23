@@ -21,7 +21,7 @@
   "relations": {},
   "acls": [],
   "methods": {
-    "wodResources": {
+    "resourcesByItemId": {
       "accepts": [
         {
           "arg": "itemId",
@@ -41,7 +41,7 @@
       "description": "This methods will give me the resources",
       "http": [
         {
-          "path": "/wod/resources",
+          "path": "/resourcesByItemId",
           "verb": "get"
         }
       ]

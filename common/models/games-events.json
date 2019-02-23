@@ -1,0 +1,30 @@
+{
+  "name": "gamesEvents",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "wods": {
+      "type": [
+        "object"
+      ],
+      "required": true
+    },
+    "result": {
+      "type": [
+        "object"
+      ],
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
