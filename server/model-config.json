@@ -57,5 +57,9 @@
   "gamesEvents": {
     "dataSource": "db",
     "public": true
+  },
+  "metadata": {
+    "dataSource": "db",
+    "public": true
   }
 }

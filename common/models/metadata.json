@@ -1,0 +1,26 @@
+{
+  "name": "metadata",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "itemId": {
+      "type": "string",
+      "required": true
+    },
+    "metadatatypeId": {
+      "type": "number",
+      "required": true
+    },
+    "metadata": {
+      "type": "object",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
