@@ -1,4 +1,6 @@
 'use strict';
+var _ = require('lodash');
+
 module.exports = function (app) {
   const User = app.models.User;
   const Metadata = app.models.metadata;
@@ -12,22 +14,21 @@ module.exports = function (app) {
 
   User.getUserProfile = function (userId, cb) {
     console.log(userId);
+    var error = new Error("The error message");
     User.findById(userId, function (err, user_) {
-      if(err) {
-        throw err;
-      }
       Metadata.find({fields: {itemId: userId, metadata: true}}, function (err, metadata) {
-        console.log({user: user_});
-        console.log({metadataUser: metadata});
-
         try {
-          const metadataArray = [];
+          if(err) {
+            throw (err);
+          }
+
+          let metadataObj = {};
           metadata.forEach((metadatatum, index) => {
-            metadataArray.push(metadatatum.metadata);
+            metadataObj = Object.assign(metadatatum.metadata);
           });
-          user_.metadata = metadataArray;
+          user_.metadata = metadataObj;
         }catch (e) {
-          cb(e);
+          cb(error);
         }
 
 
