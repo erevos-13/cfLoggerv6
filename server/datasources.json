@@ -6,5 +6,20 @@
     "options": {
       "useNewUrlParser": true
     }
+  },
+  "Email": {
+    "name": "mail",
+    "connector": "mail",
+    "transports": [{
+      "type": "SMTP",
+      "host": "smtp.gmail.com",
+      "secure": true,
+      "port": 465,
+      "auth": {
+        "user": "gmail",
+        "pass": "pass"
+      }
+    }]
   }
 }
+

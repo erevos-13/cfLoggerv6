@@ -61,5 +61,8 @@
   "metadata": {
     "dataSource": "db",
     "public": true
+  },
+  "Email": {
+    "dataSource": "Email"
   }
 }
