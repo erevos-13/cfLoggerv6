@@ -1,3 +1,4 @@
+'use strict';
 module.exports = function (app) {
   const User = app.models.User;
   const Metadata = app.models.metadata;
@@ -9,14 +10,33 @@ module.exports = function (app) {
     cb(null, 'Greetings... ' - msg);
   };
 
-  User.getUserProfile = function(userId, cb) {
+  User.getUserProfile = function (userId, cb) {
     console.log(userId);
-    Metadata.find({fields: {itemId: userId, metadata: true}},function (err, metadata) {
-      console.log({metadataUser: metadata});
-      cb(null, metadata);
-    });
-  };
+    User.findById(userId, function (err, user_) {
+      if(err) {
+        throw err;
+      }
+      Metadata.find({fields: {itemId: userId, metadata: true}}, function (err, metadata) {
+        console.log({user: user_});
+        console.log({metadataUser: metadata});
 
+        try {
+          const metadataArray = [];
+          metadata.forEach((metadatatum, index) => {
+            metadataArray.push(metadatatum.metadata);
+          });
+          user_.metadata = metadataArray;
+        }catch (e) {
+          cb(e);
+        }
+
+
+        cb(null, user_);
+      });
+
+    })
+
+  };
 
 
   User.remoteMethod(
@@ -35,7 +55,8 @@ module.exports = function (app) {
         verb: 'get',
       }
     }
-  );  /**
+  );
+  /**
    * @description get the user balances
    */
   User.remoteMethod(
