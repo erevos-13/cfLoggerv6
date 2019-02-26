@@ -14,13 +14,22 @@ module.exports = function (app) {
 
   User.getUserProfile = function (userId, cb) {
     console.log(userId);
-    var error = new Error("The error message");
+
+    if(userId === null){
+      let error = new Error('empty value');
+      error.status = 404;
+      return cb(error);
+    }
+
     User.findById(userId, function (err, user_) {
       Metadata.find({fields: {itemId: userId, metadata: true}}, function (err, metadata) {
         try {
           if(err) {
-            throw (err);
+            let error = new Error('Error');
+            error.status = 500;
+            return cb(error);
           }
+
 
           let metadataObj = {};
           metadata.forEach((metadatatum, index) => {
@@ -28,7 +37,7 @@ module.exports = function (app) {
           });
           user_.metadata = metadataObj;
         }catch (e) {
-          cb(error);
+          cb(e);
         }
 
 
