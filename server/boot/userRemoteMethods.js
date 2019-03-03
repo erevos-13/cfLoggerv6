@@ -1,5 +1,5 @@
 'use strict';
-var _ = require('lodash');
+const _ = require('lodash');
 
 module.exports = function (app) {
   const User = app.models.User;
@@ -13,7 +13,6 @@ module.exports = function (app) {
   };
 
   User.getUserProfile = function (userId, cb) {
-    console.log(userId);
 
     if(userId === null){
       let error = new Error('empty value');
@@ -21,30 +20,25 @@ module.exports = function (app) {
       return cb(error);
     }
 
-    User.findById(userId, function (err, user_) {
-      Metadata.find({fields: {itemId: userId, metadata: true}}, function (err, metadata) {
-        try {
-          if(err) {
-            let error = new Error('Error');
-            error.status = 500;
-            return cb(error);
-          }
+    Metadata.find({where: {itemId: userId}}, function (err, metadata) {
 
-
-          let metadataObj = {};
-          metadata.forEach((metadatatum, index) => {
-            metadataObj = Object.assign(metadatatum.metadata);
-          });
-          user_.metadata = metadataObj;
-        }catch (e) {
-          cb(e);
+      try {
+        if(err) {
+          let error = new Error('Error');
+          error.status = 500;
+          return cb(error);
         }
 
+        console.log({metadata: metadata});
 
-        cb(null, user_);
-      });
+        cb(null, metadata);
+      }catch (e) {
+        cb(e);
+      }
 
-    })
+
+
+    });
 
   };
 

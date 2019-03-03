@@ -32,5 +32,24 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "wodAll": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "wodsDTO",
+          "type": "object",
+          "root": true,
+          "description": "the wod with resources."
+        }
+      ],
+      "description": "This is returns all the wods with resources.",
+      "http": [
+        {
+          "path": "/wodAll",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }
