@@ -24,16 +24,33 @@ module.exports = function(Wod) {
 
 
     Wod.find({} ,function (err, wods){
-      console.log(wods);
       Resources.find({},function (err, resources) {
-        console.log(resources);
-        wods.forEach((wod, index) => {
-          const resourcesById = resources.find( id => id.itemId === wod.id);
-          wod.resources = resourcesById.resourcesTypesIds;
-          console.log(wod);
-        });
+        if(err) {
+          let error = new Error('empty value');
+          error.status = 404;
+          return callback(err);
+        }
 
-        callback(null, wods);
+        try {
+
+          wods.forEach((wod, index) => {
+            console.log({wod: wod});
+            const resourcesById = resources.find( id => id.itemId === wod.id);
+            if(!_.isNil(resourcesById)){
+              wod.resources = resourcesById.resourcesTypesIds;
+            }else {
+              wod.resources = null;
+            }
+          });
+
+          callback(null, wods);
+        }catch (e) {
+          let error = new Error('Error in array');
+          error.status = 402;
+          return callback(err);
+
+        }
+
       })
     });
 
