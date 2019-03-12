@@ -14,7 +14,7 @@ module.exports = function (app) {
 
   User.getUserProfile = function (userId, cb) {
 
-    if(userId === null){
+    if (userId === null) {
       let error = new Error('empty value');
       error.status = 404;
       return cb(error);
@@ -23,7 +23,7 @@ module.exports = function (app) {
     Metadata.find({where: {itemId: userId}}, function (err, metadata) {
 
       try {
-        if(err) {
+        if (err) {
           let error = new Error('Error');
           error.status = 500;
           return cb(error);
@@ -32,10 +32,9 @@ module.exports = function (app) {
         console.log({metadata: metadata});
 
         cb(null, metadata);
-      }catch (e) {
+      } catch (e) {
         cb(e);
       }
-
 
 
     });
@@ -78,6 +77,28 @@ module.exports = function (app) {
         path: '/balances',
         verb: 'get',
       },
+    }
+  );
+
+  /**
+   * @description remote method
+   */
+  User.remoteMethod(
+    'useSubmitScore', {
+      accepts: [{
+        arg: 'userId',
+        type: 'string',
+        required: true,
+      },
+        {arg: 'wodId', required: true,type: "string"}],
+      returns: {
+        arg: 'wodDTO',
+        type: 'object',
+      },
+      http: {
+        path: '/postSubmitScore',
+        verb: 'post',
+      }
     }
   );
 };
