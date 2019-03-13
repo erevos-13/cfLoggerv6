@@ -42,6 +42,16 @@ module.exports = function (app) {
   };
 
 
+  User.submitScore = function(userId_, wodId_, typeOfWod_, score_,cb) {
+    console.log({userId: userId_,wodId:wodId_,typeOfWod: typeOfWod_,score:score_});
+    User.create([{userId: userId_,wodId:wodId_,typeOfWod: typeOfWod_,score:score_}], function (err,data) {
+      cb(null, data);
+    });
+
+
+  };
+
+
   User.remoteMethod(
     'getUserProfile', {
       accepts: {
@@ -84,19 +94,20 @@ module.exports = function (app) {
    * @description remote method
    */
   User.remoteMethod(
-    'useSubmitScore', {
-      accepts: [{
-        arg: 'userId',
-        type: 'string',
-        required: true,
-      },
-        {arg: 'wodId', required: true,type: "string"}],
+    'submitScore', {
+      accepts:
+        [
+          {arg: 'userId', type: 'string', required: true},
+          {arg: 'wodId', required: true, type: "string"},
+          {arg: 'typeOfWod',required:true, type:'number'},
+          {arg: 'score',required:true,type:'string'}
+        ],
       returns: {
         arg: 'wodDTO',
         type: 'object',
       },
       http: {
-        path: '/postSubmitScore',
+        path: '/submitScore',
         verb: 'post',
       }
     }

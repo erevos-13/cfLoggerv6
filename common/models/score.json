@@ -1,0 +1,30 @@
+{
+  "name": "score",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "score": {
+      "type": "string",
+      "required": true
+    },
+    "typeOfWod": {
+      "type": "number",
+      "required": true
+    },
+    "wodId": {
+      "type": "string",
+      "required": true
+    },
+    "userId": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

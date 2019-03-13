@@ -64,5 +64,9 @@
   },
   "Email": {
     "dataSource": "db"
+  },
+  "score": {
+    "dataSource": "firestore",
+    "public": true
   }
 }
